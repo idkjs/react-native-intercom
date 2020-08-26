@@ -6,17 +6,17 @@
 
 [ReasonML](https://reasonml.github.io) /
 [BuckleScript](https://bucklescript.github.io) bindings for
-[`@react-native-community/intercom`](https://github.com/react-native-community/react-native-intercom).
+[`tinycreative/react-native-intercom`](https://github.com/tinycreative/react-native-intercom).
 
 Exposed as `ReactNativeIntercom` module.
 
 `@reason-react-native/react-native-intercom` X.y._ means it's compatible with
-`@react-native-community/intercom` X.y._
+`tinycreative/react-native-intercom` X.y._
 
 ## Installation
 
 When
-[`@react-native-community/intercom`](https://github.com/react-native-community/react-native-intercom)
+[`tinycreative/react-native-intercom`](https://github.com/tinycreative/react-native-intercom)
 is properly installed & configured by following their installation instructions,
 you can install the bindings:
 
