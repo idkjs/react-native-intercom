@@ -1,58 +1,33 @@
-## How to use this template
+# `@reason-react-native/react-native-intercom`
 
-- ⚠️ **Don't fork this repository.** Use the "Use this template" green GitHub
-  button.
-- Put your bindings in `src/ReactNativeSomething` & rename accordingly or use
-  `bsconfig.json` `"namespace"` field (more on this below),
-- Update all occurences of
-
-  - `@reason-react-native/__template__`
-  - `https://github.com/reason-react-native/__template__`
-  - `__template__`
-  - `@react-native-community/something`
-  - `https://github.com/react-native-community/something`
-  - `ReactNativeSomething`. If you have more than a file exposed, you should
-    consider using BuckleScript custom namespace by adjusting `bsconfig.json`
-    and adding a `"namespace": "react-native-something"` (note that it will be
-    converted to `ReactNativeSomething`)
-
-- Add your `@react-native-community/something` (adjusted) in `peerDependencies`
-  & `devDependencies` section
-- Adjust the changelog (and/or clean it)
-- Remove this part ⬆ & keep everything below ⬇
-
----
-
-# `@reason-react-native/__template__`
-
-[![Build Status](https://github.com/reason-react-native/__template__/workflows/Build/badge.svg)](https://github.com/reason-react-native/__template__/actions)
-[![Version](https://img.shields.io/npm/v/@reason-react-native/__template__.svg)](https://www.npmjs.com/@reason-react-native/__template__)
+[![Build Status](https://github.com/reason-react-native/intercom/workflows/Build/badge.svg)](https://github.com/reason-react-native/intercom/actions)
+[![Version](https://img.shields.io/npm/v/@reason-react-native/react-native-intercom.svg)](https://www.npmjs.com/@reason-react-native/react-native-intercom)
 [![Chat](https://img.shields.io/discord/235176658175262720.svg?logo=discord&colorb=blue)](https://reason-react-native.github.io/discord/)
 
 [ReasonML](https://reasonml.github.io) /
 [BuckleScript](https://bucklescript.github.io) bindings for
-[`@react-native-community/something`](https://github.com/react-native-community/something).
+[`@react-native-community/intercom`](https://github.com/react-native-community/react-native-intercom).
 
-Exposed as `ReactNativeSomething` module.
+Exposed as `ReactNativeIntercom` module.
 
-`@reason-react-native/__template__` X.y._ means it's compatible with
-`@react-native-community/something` X.y._
+`@reason-react-native/react-native-intercom` X.y._ means it's compatible with
+`@react-native-community/intercom` X.y._
 
 ## Installation
 
 When
-[`@react-native-community/something`](https://github.com/react-native-community/something)
+[`@react-native-community/intercom`](https://github.com/react-native-community/react-native-intercom)
 is properly installed & configured by following their installation instructions,
 you can install the bindings:
 
 ```console
-npm install @reason-react-native/__template__
+npm install @reason-react-native/react-native-intercom
 # or
-yarn add @reason-react-native/__template__
+yarn add @reason-react-native/react-native-intercom
 ```
 
-`@reason-react-native/__template__` should be added to `bs-dependencies` in your
-`bsconfig.json`. Something like
+`@reason-react-native/react-native-intercom` should be added to
+`bs-dependencies` in your `bsconfig.json`. Something like
 
 ```diff
 {
@@ -61,7 +36,7 @@ yarn add @reason-react-native/__template__
     "reason-react",
     "reason-react-native",
     // ...
-+    "@reason-react-native/__template__"
++    "@reason-react-native/react-native-intercom"
   ],
   //...
 }
@@ -71,15 +46,42 @@ yarn add @reason-react-native/__template__
 
 ### Types
 
-#### `ReactNativeSomething.t`
+#### `ReactNativeIntercom.t`
 
 ...
 
 ### Methods
 
-#### `ReactNativeSomething.method`
+#### `ReactNativeIntercom.registerIdentifiedUser`
 
-...
+```reason
+let email = "user@example.com"
+registerIdentifiedUser({"email": email);
+```
+
+### Example
+
+```reason
+[@react.component]
+let make = () => {
+
+  let (unread, setUnread) = React.useState(() => 0);
+
+  React.useEffect0(() => {
+    let onUnreadChange = count => setUnread(_ => count);
+    Intercom.addEventListener(
+      Intercom.Notifications.unreadCount,
+      onUnreadChange,
+    );
+    Some(
+      () =>
+        Intercom.removeEventListener(
+          Intercom.Notifications.unreadCount,
+          onUnreadChange,
+        ),
+    );
+  });
+```
 
 ---
 
